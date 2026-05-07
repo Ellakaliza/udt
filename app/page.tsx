@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Leaf, Globe2, PackageCheck, MessageCircle, ShieldCheck, Sprout, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -46,6 +47,38 @@ const trustPoints = [
 ];
 
 export default function RwandanProduceExportHomepage() {
+  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setFormStatus("loading");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get("name"),
+      company: formData.get("company"),
+      email: formData.get("email"),
+      product: formData.get("product"),
+      message: formData.get("message"),
+    };
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (response.ok) {
+      setFormStatus("success");
+      form.reset();
+    } else {
+      setFormStatus("error");
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#F7F3EB] text-[#1F302B]">
       <header className="sticky top-0 z-50 border-b border-[#E6D8C3]/80 bg-[#F7F3EB]/90 backdrop-blur-md">
@@ -55,7 +88,7 @@ export default function RwandanProduceExportHomepage() {
               <Sprout className="h-5 w-5" />
             </div>
             <div>
-              <p className="font-serif text-xl font-semibold tracking-tight">Rwanda Harvest</p>
+              <p className="font-serif text-xl font-semibold tracking-tight">UDT</p>
               <p className="text-xs uppercase tracking-[0.25em] text-[#6B7E72]">Premium Produce Export</p>
             </div>
           </div>
@@ -236,35 +269,59 @@ export default function RwandanProduceExportHomepage() {
               </div>
             </div>
 
-            <form className="grid gap-5 p-8 md:p-12">
-              <div className="grid gap-2">
-                <label className="text-sm font-medium text-[#354A43]">Full name</label>
-                <input className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]" placeholder="Your name" />
-              </div>
-              <div className="grid gap-2">
-                <label className="text-sm font-medium text-[#354A43]">Company / Organization</label>
-                <input className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]" placeholder="Company name" />
-              </div>
-              <div className="grid gap-2">
-                <label className="text-sm font-medium text-[#354A43]">Email</label>
-                <input className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]" placeholder="email@example.com" type="email" />
-              </div>
-              <div className="grid gap-2">
-                <label className="text-sm font-medium text-[#354A43]">What are you interested in?</label>
-                <select className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]">
-                  <option>Mangoes</option>
-                  <option>Avocados</option>
-                  <option>Oranges</option>
-                  <option>Future crops / Other</option>
-                </select>
-              </div>
-              <div className="grid gap-2">
-                <label className="text-sm font-medium text-[#354A43]">Message</label>
-                <textarea className="min-h-32 rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]" placeholder="Tell us your destination country, quantity, timeline, and packaging needs." />
-              </div>
-              <Button className="rounded-full bg-[#2F5D50] py-6 text-base text-[#F7F3EB] hover:bg-[#24483E]">
-                Submit Inquiry <ArrowRight className="ml-2 h-5 w-5" />
+            <form onSubmit={handleSubmit} className="grid gap-5 p-8 md:p-12">
+              <input
+                name="name"
+                className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]"
+                placeholder="Your name"
+              />
+
+              <input
+                name="company"
+                className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]"
+                placeholder="Company name"
+              />
+
+              <input
+                name="email"
+                className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]"
+                placeholder="email@example.com"
+                type="email"
+              />
+
+              <select
+                name="product"
+                className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]"
+              >
+                <option>Mangoes</option>
+                <option>Avocados</option>
+                <option>Oranges</option>
+                <option>Future crops / Other</option>
+              </select>
+              <textarea
+                name="message"
+                className="min-h-32 rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]"
+                placeholder="Tell us your destination country, quantity, timeline, and packaging needs."
+              />
+              <Button
+                type="submit"
+                disabled={formStatus === "loading"}
+                className="rounded-full bg-[#2F5D50] py-6 text-base text-[#F7F3EB] hover:bg-[#24483E]"
+              >
+                {formStatus === "loading" ? "Sending..." : "Submit Inquiry"}
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
+              {formStatus === "success" && (
+                <p className="text-sm font-medium text-[#2F5D50]">
+                  Inquiry sent successfully.
+                </p>
+              )}
+
+              {formStatus === "error" && (
+                <p className="text-sm font-medium text-red-700">
+                  Something went wrong. Please try again.
+                </p>
+              )}
             </form>
           </div>
         </section>
@@ -272,7 +329,7 @@ export default function RwandanProduceExportHomepage() {
 
       <footer className="border-t border-[#E6D8C3] bg-[#F7F3EB] px-6 py-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 text-sm text-[#53645D] md:flex-row">
-          <p>© 2026 Rwanda Harvest. All rights reserved.</p>
+          <p>© 2026 UDT. All rights reserved.</p>
           <p>Premium agricultural products from Rwanda.</p>
         </div>
       </footer>
