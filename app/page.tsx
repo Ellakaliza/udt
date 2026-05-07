@@ -1,65 +1,281 @@
-import Image from "next/image";
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Leaf, Globe2, PackageCheck, MessageCircle, ShieldCheck, Sprout, Truck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-export default function Home() {
+const products = [
+  {
+    name: "Mangoes",
+    description: "Sweet, vibrant tropical mangoes sourced from Rwandan farms.",
+    image: "https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    name: "Avocados",
+    description: "Fresh avocados prepared for wholesale and export inquiries.",
+    image: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    name: "Oranges",
+    description: "Bright citrus fruit selected for freshness, quality, and consistency.",
+    image: "https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    name: "Future crops",
+    description: "Hibiscus and other plant-based products may be available in future seasons.",
+    image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?q=80&w=1200&auto=format&fit=crop",
+  },
+];
+
+const trustPoints = [
+  {
+    icon: <Leaf className="h-6 w-6" />,
+    title: "Farm-grown produce",
+    text: "Products are sourced directly from family-led agricultural operations in Rwanda.",
+  },
+  {
+    icon: <PackageCheck className="h-6 w-6" />,
+    title: "Export-ready planning",
+    text: "Bulk order details, packaging, seasonality, and documentation can be discussed before shipment.",
+  },
+  {
+    icon: <Globe2 className="h-6 w-6" />,
+    title: "International focus",
+    text: "Built for importers, wholesalers, and international buyers looking for reliable suppliers.",
+  },
+];
+
+export default function RwandanProduceExportHomepage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-[#F7F3EB] text-[#1F302B]">
+      <header className="sticky top-0 z-50 border-b border-[#E6D8C3]/80 bg-[#F7F3EB]/90 backdrop-blur-md">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2F5D50] text-[#F7F3EB]">
+              <Sprout className="h-5 w-5" />
+            </div>
+            <div>
+              <p className="font-serif text-xl font-semibold tracking-tight">Rwanda Harvest</p>
+              <p className="text-xs uppercase tracking-[0.25em] text-[#6B7E72]">Premium Produce Export</p>
+            </div>
+          </div>
+
+          <div className="hidden items-center gap-8 text-sm font-medium text-[#354A43] md:flex">
+            <a href="#products" className="hover:text-[#2F5D50]">Products</a>
+            <a href="#about" className="hover:text-[#2F5D50]">About</a>
+            <a href="#export" className="hover:text-[#2F5D50]">Export</a>
+            <a href="#contact" className="hover:text-[#2F5D50]">Contact</a>
+          </div>
+
+          <Button className="rounded-full bg-[#2F5D50] px-5 text-[#F7F3EB] hover:bg-[#24483E]">
+            Request Quote
+          </Button>
+        </nav>
+      </header>
+
+      <main>
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_#E6D8C3,_transparent_34%)]" />
+          <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 md:grid-cols-[1.05fr_0.95fr] md:py-28">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="relative z-10"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <p className="mb-4 inline-flex rounded-full bg-[#E6D8C3] px-4 py-2 text-sm font-medium text-[#2F5D50]">
+                Fresh produce from Rwanda to international markets
+              </p>
+              <h1 className="font-serif text-5xl font-semibold leading-[1.05] tracking-tight text-[#1F302B] md:text-7xl">
+                Premium African produce, grown with care and prepared for export.
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#53645D]">
+                We connect international buyers with high-quality Rwandan fruits and future plant-based products through a clear, professional, and quote-based ordering process.
+              </p>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <Button className="rounded-full bg-[#2F5D50] px-7 py-6 text-base text-[#F7F3EB] hover:bg-[#24483E]">
+                  Request a Quote <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button variant="outline" className="rounded-full border-[#2F5D50] px-7 py-6 text-base text-[#2F5D50] hover:bg-[#E6D8C3]/60">
+                  View Products
+                </Button>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="relative z-10"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+              <div className="relative rounded-[2rem] bg-[#E6D8C3] p-3 shadow-2xl shadow-[#2F5D50]/10">
+                <img
+                  src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=1400&auto=format&fit=crop"
+                  alt="Fresh tropical fruits"
+                  className="h-[520px] w-full rounded-[1.5rem] object-cover"
+                />
+                <div className="absolute bottom-8 left-8 right-8 rounded-3xl bg-[#F7F3EB]/90 p-5 shadow-lg backdrop-blur-md">
+                  <p className="text-sm uppercase tracking-[0.2em] text-[#7A9E7E]">Current focus</p>
+                  <p className="mt-1 font-serif text-2xl font-semibold text-[#1F302B]">Mangoes, avocados & oranges</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="bg-[#2F5D50] py-10 text-[#F7F3EB]">
+          <div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-3">
+            {trustPoints.map((item) => (
+              <div key={item.title} className="flex gap-4 rounded-3xl bg-white/8 p-5">
+                <div className="mt-1 text-[#E6D8C3]">{item.icon}</div>
+                <div>
+                  <h3 className="font-serif text-xl font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#E8EFE9]">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="products" className="mx-auto max-w-7xl px-6 py-20">
+          <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#7A9E7E]">Our products</p>
+              <h2 className="mt-3 font-serif text-4xl font-semibold md:text-5xl">Fresh crops with export potential</h2>
+            </div>
+            <p className="max-w-xl text-[#53645D]">
+              Product availability may vary by season, quantity, and export requirements. Buyers can request details directly through the inquiry form.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-4">
+            {products.map((product) => (
+              <Card key={product.name} className="overflow-hidden rounded-[1.5rem] border-[#E6D8C3] bg-[#FFFDF8] shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                <img src={product.image} alt={product.name} className="h-56 w-full object-cover" />
+                <CardContent className="p-5">
+                  <h3 className="font-serif text-2xl font-semibold text-[#1F302B]">{product.name}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#53645D]">{product.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section id="about" className="bg-[#E6D8C3]/55 py-20">
+          <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-2 md:items-center">
+            <div className="grid grid-cols-2 gap-4">
+              <img
+                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=900&auto=format&fit=crop"
+                alt="Agricultural field"
+                className="h-72 rounded-[2rem] object-cover"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?q=80&w=900&auto=format&fit=crop"
+                alt="Farm harvest"
+                className="mt-10 h-72 rounded-[2rem] object-cover"
+              />
+            </div>
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#7A9E7E]">Family-led agriculture</p>
+              <h2 className="mt-3 font-serif text-4xl font-semibold md:text-5xl">Rooted in Rwanda, built for global trade.</h2>
+              <p className="mt-6 text-lg leading-8 text-[#53645D]">
+                Our business represents a family commitment to agriculture, quality, and long-term partnerships. The website is designed to give buyers the information they need before starting a conversation: what we grow, where we operate, and how to begin an order inquiry.
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-3xl bg-[#F7F3EB] p-5">
+                  <ShieldCheck className="h-7 w-7 text-[#2F5D50]" />
+                  <h3 className="mt-3 font-serif text-xl font-semibold">Trust-first communication</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#53645D]">Clear product and order information for serious buyers.</p>
+                </div>
+                <div className="rounded-3xl bg-[#F7F3EB] p-5">
+                  <Truck className="h-7 w-7 text-[#2F5D50]" />
+                  <h3 className="mt-3 font-serif text-xl font-semibold">Export conversations</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#53645D]">Shipping, packaging, and documentation can be discussed per request.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="export" className="mx-auto max-w-7xl px-6 py-20">
+          <div className="rounded-[2rem] bg-[#1F302B] p-8 text-[#F7F3EB] md:p-12">
+            <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#A7C957]">How ordering works</p>
+                <h2 className="mt-3 font-serif text-4xl font-semibold md:text-5xl">Simple quote-based ordering for international buyers.</h2>
+              </div>
+              <div className="grid gap-4">
+                {[
+                  "Tell us your product, destination country, and estimated quantity.",
+                  "We review availability, seasonality, packaging, and export requirements.",
+                  "Our team follows up directly with next steps and pricing information.",
+                ].map((step, index) => (
+                  <div key={step} className="flex gap-4 rounded-3xl bg-white/8 p-5">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E6D8C3] font-semibold text-[#1F302B]">
+                      {index + 1}
+                    </div>
+                    <p className="leading-7 text-[#E8EFE9]">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="mx-auto max-w-7xl px-6 pb-20">
+          <div className="grid overflow-hidden rounded-[2rem] bg-[#FFFDF8] shadow-xl shadow-[#2F5D50]/10 md:grid-cols-2">
+            <div className="bg-[#2F5D50] p-8 text-[#F7F3EB] md:p-12">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#E6D8C3]">Start an inquiry</p>
+              <h2 className="mt-3 font-serif text-4xl font-semibold">Request product availability or a bulk order quote.</h2>
+              <p className="mt-6 leading-8 text-[#E8EFE9]">
+                Share your buying needs and our team will respond with the most relevant product and export information.
+              </p>
+              <div className="mt-8 flex items-center gap-3 rounded-3xl bg-white/10 p-5">
+                <MessageCircle className="h-6 w-6 text-[#E6D8C3]" />
+                <p className="text-sm leading-6">WhatsApp and email contact options can be connected here later.</p>
+              </div>
+            </div>
+
+            <form className="grid gap-5 p-8 md:p-12">
+              <div className="grid gap-2">
+                <label className="text-sm font-medium text-[#354A43]">Full name</label>
+                <input className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]" placeholder="Your name" />
+              </div>
+              <div className="grid gap-2">
+                <label className="text-sm font-medium text-[#354A43]">Company / Organization</label>
+                <input className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]" placeholder="Company name" />
+              </div>
+              <div className="grid gap-2">
+                <label className="text-sm font-medium text-[#354A43]">Email</label>
+                <input className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]" placeholder="email@example.com" type="email" />
+              </div>
+              <div className="grid gap-2">
+                <label className="text-sm font-medium text-[#354A43]">What are you interested in?</label>
+                <select className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]">
+                  <option>Mangoes</option>
+                  <option>Avocados</option>
+                  <option>Oranges</option>
+                  <option>Future crops / Other</option>
+                </select>
+              </div>
+              <div className="grid gap-2">
+                <label className="text-sm font-medium text-[#354A43]">Message</label>
+                <textarea className="min-h-32 rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]" placeholder="Tell us your destination country, quantity, timeline, and packaging needs." />
+              </div>
+              <Button className="rounded-full bg-[#2F5D50] py-6 text-base text-[#F7F3EB] hover:bg-[#24483E]">
+                Submit Inquiry <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </form>
+          </div>
+        </section>
       </main>
+
+      <footer className="border-t border-[#E6D8C3] bg-[#F7F3EB] px-6 py-8">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 text-sm text-[#53645D] md:flex-row">
+          <p>© 2026 Rwanda Harvest. All rights reserved.</p>
+          <p>Premium agricultural products from Rwanda.</p>
+        </div>
+      </footer>
     </div>
   );
 }
