@@ -7,19 +7,14 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const products = [
   {
-    name: "Mangoes",
-    description: "Sweet, vibrant tropical mangoes sourced from Rwandan farms.",
-    image: "https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=1200&auto=format&fit=crop",
+    name: "Peppers",
+    description: "Sweet, vibrant peppers.",
+    image: "https://images.unsplash.com/photo-1601648764658-cf37e8c89b70?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVwcGVyc3xlbnwwfHwwfHx8MA%3D%3D",
   },
   {
     name: "Avocados",
     description: "Fresh avocados prepared for wholesale and export inquiries.",
-    image: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Oranges",
-    description: "Bright citrus fruit selected for freshness, quality, and consistency.",
-    image: "https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1671624749229-7d37826013b5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZvY2Fkb3N8ZW58MHx8MHx8fDA%3D",
   },
   {
     name: "Future crops",
@@ -32,7 +27,7 @@ const trustPoints = [
   {
     icon: <Leaf className="h-6 w-6" />,
     title: "Farm-grown produce",
-    text: "Products are sourced directly from family-led agricultural operations in Rwanda.",
+    text: "Products are sourced directly from family-led agricultural operations.",
   },
   {
     icon: <PackageCheck className="h-6 w-6" />,
@@ -123,7 +118,7 @@ export default function RwandanProduceExportHomepage() {
                 Premium African produce, grown with care and prepared for export.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-[#53645D]">
-                We connect international buyers with high-quality Rwandan fruits and future plant-based products through a clear, professional, and quote-based ordering process.
+                We connect international buyers with high-quality fruits and vegetables through a clear, professional, and quote-based ordering process.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Button className="rounded-full bg-[#2F5D50] px-7 py-6 text-base text-[#F7F3EB] hover:bg-[#24483E]">
@@ -143,13 +138,13 @@ export default function RwandanProduceExportHomepage() {
             >
               <div className="relative rounded-[2rem] bg-[#E6D8C3] p-3 shadow-2xl shadow-[#2F5D50]/10">
                 <img
-                  src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=1400&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1509099381441-ea3c0cf98b94?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Fresh tropical fruits"
                   className="h-[520px] w-full rounded-[1.5rem] object-cover"
                 />
                 <div className="absolute bottom-8 left-8 right-8 rounded-3xl bg-[#F7F3EB]/90 p-5 shadow-lg backdrop-blur-md">
                   <p className="text-sm uppercase tracking-[0.2em] text-[#7A9E7E]">Current focus</p>
-                  <p className="mt-1 font-serif text-2xl font-semibold text-[#1F302B]">Mangoes, avocados & oranges</p>
+                  <p className="mt-1 font-serif text-2xl font-semibold text-[#1F302B]">Avocados & Peppers</p>
                 </div>
               </div>
             </motion.div>
@@ -203,7 +198,7 @@ export default function RwandanProduceExportHomepage() {
                 className="h-72 rounded-[2rem] object-cover"
               />
               <img
-                src="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?q=80&w=900&auto=format&fit=crop"
+                src="https://media.istockphoto.com/id/2213832554/fr/photo/de-grandes-plantations-davocats-en-cours-de-r%C3%A9colte.webp?a=1&b=1&s=612x612&w=0&k=20&c=kSeS5cdrgdaHUj0trOaHhOA9GGQAs_yv0tOanvLJ2Fc="
                 alt="Farm harvest"
                 className="mt-10 h-72 rounded-[2rem] object-cover"
               />
@@ -265,7 +260,7 @@ export default function RwandanProduceExportHomepage() {
               </p>
               <div className="mt-8 flex items-center gap-3 rounded-3xl bg-white/10 p-5">
                 <MessageCircle className="h-6 w-6 text-[#E6D8C3]" />
-                <p className="text-sm leading-6">WhatsApp and email contact options can be connected here later.</p>
+                <p className="text-sm leading-6">WhatsApp and email contact options are gonna be connected here later.</p>
               </div>
             </div>
 
@@ -293,9 +288,8 @@ export default function RwandanProduceExportHomepage() {
                 name="product"
                 className="rounded-2xl border border-[#E6D8C3] bg-[#F7F3EB] px-4 py-3 outline-none focus:border-[#2F5D50]"
               >
-                <option>Mangoes</option>
+                <option>Peppers</option>
                 <option>Avocados</option>
-                <option>Oranges</option>
                 <option>Future crops / Other</option>
               </select>
               <textarea
